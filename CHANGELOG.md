@@ -10,6 +10,8 @@ the notes of the version's GitHub Release.
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-11-25
+
 ### Added
 
 - First version of the Uconnect (Stellantis) integration: the vehicles of a
@@ -33,4 +35,5 @@ the notes of the version's GitHub Release.
   privacy mode is on.
 - English, French, German and Spanish texts and documentation.
 
-[Unreleased]: https://github.com/gboulvin/Gladys-Uconnect-Stellantis/commits/main
+[Unreleased]: https://github.com/gboulvin/Gladys-Uconnect-Stellantis/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/gboulvin/Gladys-Uconnect-Stellantis/releases/tag/v1.0.0

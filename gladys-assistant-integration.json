@@ -8,8 +8,8 @@
     "de": "Fiat-, Jeep-, Alfa-Romeo-, Maserati-, Chrysler-, Dodge- und Ram-Fahrzeuge via Uconnect.",
     "es": "Vehículos Fiat, Jeep, Alfa Romeo, Maserati, Chrysler, Dodge y Ram vía Uconnect."
   },
-  "version": "0.0.0",
-  "docker_image": "ghcr.io/gboulvin/gladys-uconnect-stellantis:0.0.0",
+  "version": "1.0.0",
+  "docker_image": "ghcr.io/gboulvin/gladys-uconnect-stellantis:1.0.0",
   "gladys_version": ">=5.1.0",
   "cover_image": "https://raw.githubusercontent.com/gboulvin/Gladys-Uconnect-Stellantis/main/cover.jpg",
   "categories": ["vehicles", "energy"],

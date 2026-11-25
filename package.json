@@ -1,6 +1,6 @@
 {
   "name": "gladys-uconnect-stellantis",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Gladys Assistant integration for Stellantis vehicles connected to Uconnect (Fiat, Jeep, Alfa Romeo, Maserati, Chrysler, Dodge, Ram).",
   "type": "module",
