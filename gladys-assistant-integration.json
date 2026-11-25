@@ -1,0 +1,1645 @@
+{
+  "manifest_version": 1,
+  "type": "device",
+  "name": "Uconnect (Stellantis)",
+  "description": {
+    "en": "Fiat, Jeep, Alfa Romeo, Maserati, Chrysler, Dodge & Ram vehicles via Uconnect.",
+    "fr": "Véhicules Fiat, Jeep, Alfa Romeo, Maserati, Chrysler, Dodge et Ram via Uconnect.",
+    "de": "Fiat-, Jeep-, Alfa-Romeo-, Maserati-, Chrysler-, Dodge- und Ram-Fahrzeuge via Uconnect.",
+    "es": "Vehículos Fiat, Jeep, Alfa Romeo, Maserati, Chrysler, Dodge y Ram vía Uconnect."
+  },
+  "version": "0.0.0",
+  "docker_image": "ghcr.io/gboulvin/gladys-uconnect-stellantis:0.0.0",
+  "gladys_version": ">=5.1.0",
+  "cover_image": "https://raw.githubusercontent.com/gboulvin/Gladys-Uconnect-Stellantis/main/cover.jpg",
+  "categories": ["vehicles", "energy"],
+  "transports": ["cloud"],
+  "config_schema": [
+    {
+      "key": "intro",
+      "type": "section",
+      "label": {
+        "en": "Your Uconnect account",
+        "fr": "Votre compte Uconnect",
+        "de": "Ihr Uconnect-Konto",
+        "es": "Su cuenta Uconnect"
+      },
+      "description": {
+        "en": "Use the e-mail and password of the official app of your brand (My Uconnect, Jeep, Alfa Romeo…). The vehicle must have active connected services. The PIN is only needed to send commands (lock, climate, charge…).",
+        "fr": "Utilisez l’e-mail et le mot de passe de l’application officielle de votre marque (My Uconnect, Jeep, Alfa Romeo…). Les services connectés du véhicule doivent être actifs. Le code PIN n’est nécessaire que pour envoyer des commandes (verrouillage, climatisation, recharge…).",
+        "de": "Verwenden Sie E-Mail und Passwort der offiziellen App Ihrer Marke (My Uconnect, Jeep, Alfa Romeo …). Die vernetzten Dienste des Fahrzeugs müssen aktiv sein. Die PIN wird nur für Befehle benötigt (Verriegeln, Klimatisierung, Laden …).",
+        "es": "Utilice el correo y la contraseña de la aplicación oficial de su marca (My Uconnect, Jeep, Alfa Romeo…). Los servicios conectados del vehículo deben estar activos. El PIN solo es necesario para enviar comandos (bloqueo, climatización, carga…)."
+      },
+      "links": [
+        {
+          "url": "https://github.com/gboulvin/Gladys-Uconnect-Stellantis#readme",
+          "label": {
+            "en": "Integration documentation",
+            "fr": "Documentation de l’intégration",
+            "de": "Dokumentation der Integration",
+            "es": "Documentación de la integración"
+          }
+        }
+      ]
+    },
+    {
+      "key": "brand",
+      "type": "select",
+      "label": {
+        "en": "Brand and region",
+        "fr": "Marque et région",
+        "de": "Marke und Region",
+        "es": "Marca y región"
+      },
+      "description": {
+        "en": "The brand and market of your account. If the login is refused, try another region.",
+        "fr": "La marque et le marché de votre compte. Si la connexion est refusée, essayez une autre région.",
+        "de": "Marke und Markt Ihres Kontos. Wird die Anmeldung abgelehnt, versuchen Sie eine andere Region.",
+        "es": "La marca y el mercado de su cuenta. Si se rechaza el inicio de sesión, pruebe otra región."
+      },
+      "required": true,
+      "default": "fiat_eu",
+      "options": [
+        {
+          "value": "fiat_eu",
+          "label": {
+            "en": "Fiat / Abarth (Europe)",
+            "fr": "Fiat / Abarth (Europe)",
+            "de": "Fiat / Abarth (Europe)",
+            "es": "Fiat / Abarth (Europe)"
+          }
+        },
+        {
+          "value": "fiat_us",
+          "label": {
+            "en": "Fiat (USA)",
+            "fr": "Fiat (USA)",
+            "de": "Fiat (USA)",
+            "es": "Fiat (USA)"
+          }
+        },
+        {
+          "value": "fiat_canada",
+          "label": {
+            "en": "Fiat (Canada)",
+            "fr": "Fiat (Canada)",
+            "de": "Fiat (Canada)",
+            "es": "Fiat (Canada)"
+          }
+        },
+        {
+          "value": "fiat_asia",
+          "label": {
+            "en": "Fiat (Asia)",
+            "fr": "Fiat (Asia)",
+            "de": "Fiat (Asia)",
+            "es": "Fiat (Asia)"
+          }
+        },
+        {
+          "value": "fiat_latam",
+          "label": {
+            "en": "Fiat (Brazil / LATAM)",
+            "fr": "Fiat (Brazil / LATAM)",
+            "de": "Fiat (Brazil / LATAM)",
+            "es": "Fiat (Brazil / LATAM)"
+          }
+        },
+        {
+          "value": "jeep_eu",
+          "label": {
+            "en": "Jeep (Europe)",
+            "fr": "Jeep (Europe)",
+            "de": "Jeep (Europe)",
+            "es": "Jeep (Europe)"
+          }
+        },
+        {
+          "value": "jeep_us",
+          "label": {
+            "en": "Jeep (USA / Canada)",
+            "fr": "Jeep (USA / Canada)",
+            "de": "Jeep (USA / Canada)",
+            "es": "Jeep (USA / Canada)"
+          }
+        },
+        {
+          "value": "jeep_asia",
+          "label": {
+            "en": "Jeep (Asia)",
+            "fr": "Jeep (Asia)",
+            "de": "Jeep (Asia)",
+            "es": "Jeep (Asia)"
+          }
+        },
+        {
+          "value": "jeep_latam",
+          "label": {
+            "en": "Jeep (Brazil / LATAM)",
+            "fr": "Jeep (Brazil / LATAM)",
+            "de": "Jeep (Brazil / LATAM)",
+            "es": "Jeep (Brazil / LATAM)"
+          }
+        },
+        {
+          "value": "alfa_romeo_eu",
+          "label": {
+            "en": "Alfa Romeo (Europe)",
+            "fr": "Alfa Romeo (Europe)",
+            "de": "Alfa Romeo (Europe)",
+            "es": "Alfa Romeo (Europe)"
+          }
+        },
+        {
+          "value": "alfa_romeo_us_canada",
+          "label": {
+            "en": "Alfa Romeo (USA / Canada)",
+            "fr": "Alfa Romeo (USA / Canada)",
+            "de": "Alfa Romeo (USA / Canada)",
+            "es": "Alfa Romeo (USA / Canada)"
+          }
+        },
+        {
+          "value": "alfa_romeo_asia",
+          "label": {
+            "en": "Alfa Romeo (Asia)",
+            "fr": "Alfa Romeo (Asia)",
+            "de": "Alfa Romeo (Asia)",
+            "es": "Alfa Romeo (Asia)"
+          }
+        },
+        {
+          "value": "lancia_eu",
+          "label": {
+            "en": "Lancia (Europe)",
+            "fr": "Lancia (Europe)",
+            "de": "Lancia (Europe)",
+            "es": "Lancia (Europe)"
+          }
+        },
+        {
+          "value": "maserati_eu",
+          "label": {
+            "en": "Maserati (Europe)",
+            "fr": "Maserati (Europe)",
+            "de": "Maserati (Europe)",
+            "es": "Maserati (Europe)"
+          }
+        },
+        {
+          "value": "maserati_us_canada",
+          "label": {
+            "en": "Maserati (USA / Canada)",
+            "fr": "Maserati (USA / Canada)",
+            "de": "Maserati (USA / Canada)",
+            "es": "Maserati (USA / Canada)"
+          }
+        },
+        {
+          "value": "maserati_asia",
+          "label": {
+            "en": "Maserati (Asia)",
+            "fr": "Maserati (Asia)",
+            "de": "Maserati (Asia)",
+            "es": "Maserati (Asia)"
+          }
+        },
+        {
+          "value": "chrysler_us",
+          "label": {
+            "en": "Chrysler (USA)",
+            "fr": "Chrysler (USA)",
+            "de": "Chrysler (USA)",
+            "es": "Chrysler (USA)"
+          }
+        },
+        {
+          "value": "chrysler_canada",
+          "label": {
+            "en": "Chrysler (Canada)",
+            "fr": "Chrysler (Canada)",
+            "de": "Chrysler (Canada)",
+            "es": "Chrysler (Canada)"
+          }
+        },
+        {
+          "value": "dodge_us",
+          "label": {
+            "en": "Dodge (USA)",
+            "fr": "Dodge (USA)",
+            "de": "Dodge (USA)",
+            "es": "Dodge (USA)"
+          }
+        },
+        {
+          "value": "ram_us",
+          "label": {
+            "en": "Ram (USA)",
+            "fr": "Ram (USA)",
+            "de": "Ram (USA)",
+            "es": "Ram (USA)"
+          }
+        },
+        {
+          "value": "ram_latam",
+          "label": {
+            "en": "Ram (Brazil / LATAM)",
+            "fr": "Ram (Brazil / LATAM)",
+            "de": "Ram (Brazil / LATAM)",
+            "es": "Ram (Brazil / LATAM)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "email",
+      "type": "string",
+      "label": {
+        "en": "E-mail",
+        "fr": "E-mail",
+        "de": "E-Mail",
+        "es": "Correo electrónico"
+      },
+      "placeholder": {
+        "en": "you@example.com",
+        "fr": "vous@exemple.fr",
+        "de": "sie@beispiel.de",
+        "es": "usted@ejemplo.es"
+      },
+      "required": true
+    },
+    {
+      "key": "password",
+      "type": "secret",
+      "label": {
+        "en": "Password",
+        "fr": "Mot de passe",
+        "de": "Passwort",
+        "es": "Contraseña"
+      },
+      "required": true
+    },
+    {
+      "key": "pin",
+      "type": "secret",
+      "label": {
+        "en": "PIN (commands)",
+        "fr": "Code PIN (commandes)",
+        "de": "PIN (Befehle)",
+        "es": "PIN (comandos)"
+      },
+      "description": {
+        "en": "The 4-digit PIN of the app, needed to lock, unlock, start the climate or the charge. Leave empty for read-only use.",
+        "fr": "Le code PIN à 4 chiffres de l’application, nécessaire pour verrouiller, déverrouiller, lancer la climatisation ou la recharge. Laissez vide pour une utilisation en lecture seule.",
+        "de": "Die 4-stellige PIN der App, nötig zum Verriegeln, Entriegeln, Starten von Klimatisierung oder Laden. Leer lassen für reinen Lesezugriff.",
+        "es": "El PIN de 4 dígitos de la aplicación, necesario para bloquear, desbloquear, encender la climatización o la carga. Déjelo vacío para un uso de solo lectura."
+      },
+      "placeholder": {
+        "en": "e.g. 1234",
+        "fr": "ex. 1234",
+        "de": "z. B. 1234",
+        "es": "p. ej. 1234"
+      },
+      "required": false
+    },
+    {
+      "key": "refresh_interval",
+      "type": "number",
+      "label": {
+        "en": "Refresh interval (min)",
+        "fr": "Intervalle de rafraîchissement (min)",
+        "de": "Aktualisierungsintervall (Min.)",
+        "es": "Intervalo de actualización (min)"
+      },
+      "description": {
+        "en": "How often the Uconnect cloud is read. The vehicle itself uploads its state at its own pace.",
+        "fr": "Fréquence de lecture du cloud Uconnect. Le véhicule envoie lui-même son état à son propre rythme.",
+        "de": "Wie oft die Uconnect-Cloud gelesen wird. Das Fahrzeug lädt seinen Zustand in seinem eigenen Rhythmus hoch.",
+        "es": "Frecuencia de lectura de la nube Uconnect. El vehículo envía su estado a su propio ritmo."
+      },
+      "required": false,
+      "default": 5,
+      "min": 2,
+      "max": 240
+    },
+    {
+      "key": "low_battery_threshold",
+      "type": "number",
+      "label": {
+        "en": "Low battery threshold (%)",
+        "fr": "Seuil de batterie faible (%)",
+        "de": "Schwelle niedriger Akkustand (%)",
+        "es": "Umbral de batería baja (%)"
+      },
+      "description": {
+        "en": "The \"Battery low\" scene trigger fires when the charge drops under this level.",
+        "fr": "Le déclencheur de scène « Batterie faible » se déclenche quand la charge passe sous ce niveau.",
+        "de": "Der Szenen-Auslöser „Akku niedrig“ wird ausgelöst, wenn die Ladung unter diesen Wert fällt.",
+        "es": "El disparador de escena «Batería baja» se activa cuando la carga baja de este nivel."
+      },
+      "required": false,
+      "default": 20,
+      "min": 0,
+      "max": 100
+    },
+    {
+      "key": "temperature_unit",
+      "type": "select",
+      "label": {
+        "en": "Climate temperature unit",
+        "fr": "Unité de température de la climatisation",
+        "de": "Temperatureinheit der Klimatisierung",
+        "es": "Unidad de temperatura de la climatización"
+      },
+      "required": false,
+      "default": "celsius",
+      "options": [
+        {
+          "value": "celsius",
+          "label": {
+            "en": "Celsius",
+            "fr": "Celsius",
+            "de": "Celsius",
+            "es": "Celsius"
+          }
+        },
+        {
+          "value": "fahrenheit",
+          "label": {
+            "en": "Fahrenheit",
+            "fr": "Fahrenheit",
+            "de": "Fahrenheit",
+            "es": "Fahrenheit"
+          }
+        }
+      ]
+    },
+    {
+      "key": "climate_temperature",
+      "type": "number",
+      "label": {
+        "en": "Default climate temperature",
+        "fr": "Température de climatisation par défaut",
+        "de": "Standard-Klimatemperatur",
+        "es": "Temperatura de climatización por defecto"
+      },
+      "description": {
+        "en": "Target sent with \"Start the climate\", for the vehicles that accept one.",
+        "fr": "Consigne envoyée avec « Démarrer la climatisation », pour les véhicules qui l’acceptent.",
+        "de": "Zielwert, der mit „Klimatisierung starten“ gesendet wird, sofern das Fahrzeug ihn unterstützt.",
+        "es": "Temperatura enviada con «Encender la climatización», en los vehículos que la admiten."
+      },
+      "required": false,
+      "default": 21,
+      "min": 10,
+      "max": 90
+    },
+    {
+      "key": "wait_for_confirmation",
+      "type": "boolean",
+      "label": {
+        "en": "Wait for the vehicle to confirm commands",
+        "fr": "Attendre la confirmation du véhicule",
+        "de": "Auf Bestätigung des Fahrzeugs warten",
+        "es": "Esperar la confirmación del vehículo"
+      },
+      "description": {
+        "en": "Scene actions and widget buttons wait (up to 75 s) for the vehicle to report the result.",
+        "fr": "Les actions de scène et les boutons du widget attendent (jusqu’à 75 s) le résultat renvoyé par le véhicule.",
+        "de": "Szenenaktionen und Widget-Schaltflächen warten (bis zu 75 s) auf das Ergebnis des Fahrzeugs.",
+        "es": "Las acciones de escena y los botones del widget esperan (hasta 75 s) el resultado del vehículo."
+      },
+      "required": false,
+      "default": true
+    }
+  ],
+  "actions": [
+    {
+      "key": "test_connection",
+      "label": {
+        "en": "Test the connection",
+        "fr": "Tester la connexion",
+        "de": "Verbindung testen",
+        "es": "Probar la conexión"
+      },
+      "description": {
+        "en": "Log in to Uconnect and list the vehicles of the account.",
+        "fr": "Se connecte à Uconnect et liste les véhicules du compte.",
+        "de": "Meldet sich bei Uconnect an und listet die Fahrzeuge des Kontos auf.",
+        "es": "Inicia sesión en Uconnect y muestra los vehículos de la cuenta."
+      },
+      "timeout_seconds": 60
+    },
+    {
+      "key": "refresh",
+      "label": {
+        "en": "Refresh now",
+        "fr": "Rafraîchir maintenant",
+        "de": "Jetzt aktualisieren",
+        "es": "Actualizar ahora"
+      },
+      "timeout_seconds": 60
+    },
+    {
+      "key": "send_command",
+      "label": {
+        "en": "Send a command",
+        "fr": "Envoyer une commande",
+        "de": "Befehl senden",
+        "es": "Enviar un comando"
+      },
+      "description": {
+        "en": "Send a remote command to a vehicle and wait for its result.",
+        "fr": "Envoie une commande à distance à un véhicule et attend son résultat.",
+        "de": "Sendet einen Fernbefehl an ein Fahrzeug und wartet auf das Ergebnis.",
+        "es": "Envía un comando remoto a un vehículo y espera su resultado."
+      },
+      "timeout_seconds": 120,
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Vehicle",
+            "fr": "Véhicule",
+            "de": "Fahrzeug",
+            "es": "Vehículo"
+          },
+          "required": true
+        },
+        {
+          "key": "command",
+          "type": "select",
+          "label": {
+            "en": "Command",
+            "fr": "Commande",
+            "de": "Befehl",
+            "es": "Comando"
+          },
+          "required": true,
+          "options": [
+            {
+              "value": "lock",
+              "label": {
+                "en": "Lock the doors",
+                "fr": "Verrouiller les portes",
+                "de": "Türen verriegeln",
+                "es": "Bloquear las puertas"
+              }
+            },
+            {
+              "value": "unlock",
+              "label": {
+                "en": "Unlock the doors",
+                "fr": "Déverrouiller les portes",
+                "de": "Türen entriegeln",
+                "es": "Desbloquear las puertas"
+              }
+            },
+            {
+              "value": "climate_on",
+              "label": {
+                "en": "Start the climate",
+                "fr": "Démarrer la climatisation",
+                "de": "Klimatisierung starten",
+                "es": "Encender la climatización"
+              }
+            },
+            {
+              "value": "climate_off",
+              "label": {
+                "en": "Stop the climate",
+                "fr": "Arrêter la climatisation",
+                "de": "Klimatisierung stoppen",
+                "es": "Apagar la climatización"
+              }
+            },
+            {
+              "value": "engine_on",
+              "label": {
+                "en": "Remote engine start",
+                "fr": "Démarrer le moteur à distance",
+                "de": "Motor fernstarten",
+                "es": "Arrancar el motor a distancia"
+              }
+            },
+            {
+              "value": "engine_off",
+              "label": {
+                "en": "Remote engine stop",
+                "fr": "Arrêter le moteur à distance",
+                "de": "Motor fern abstellen",
+                "es": "Parar el motor a distancia"
+              }
+            },
+            {
+              "value": "lights_horn",
+              "label": {
+                "en": "Flash lights and honk",
+                "fr": "Phares et klaxon",
+                "de": "Lichthupe und Hupe",
+                "es": "Luces y claxon"
+              }
+            },
+            {
+              "value": "lights",
+              "label": {
+                "en": "Flash the lights",
+                "fr": "Faire clignoter les phares",
+                "de": "Lichter blinken lassen",
+                "es": "Encender las luces"
+              }
+            },
+            {
+              "value": "charge_now",
+              "label": {
+                "en": "Start charging",
+                "fr": "Lancer la recharge",
+                "de": "Laden starten",
+                "es": "Iniciar la carga"
+              }
+            },
+            {
+              "value": "cabin_ventilation",
+              "label": {
+                "en": "Ventilate the cabin",
+                "fr": "Ventiler l’habitacle",
+                "de": "Innenraum lüften",
+                "es": "Ventilar el habitáculo"
+              }
+            },
+            {
+              "value": "trunk_lock",
+              "label": {
+                "en": "Lock the trunk",
+                "fr": "Verrouiller le coffre",
+                "de": "Kofferraum verriegeln",
+                "es": "Bloquear el maletero"
+              }
+            },
+            {
+              "value": "trunk_unlock",
+              "label": {
+                "en": "Unlock the trunk",
+                "fr": "Déverrouiller le coffre",
+                "de": "Kofferraum entriegeln",
+                "es": "Desbloquear el maletero"
+              }
+            },
+            {
+              "value": "liftgate_lock",
+              "label": {
+                "en": "Lock the liftgate",
+                "fr": "Verrouiller le hayon",
+                "de": "Heckklappe verriegeln",
+                "es": "Bloquear el portón"
+              }
+            },
+            {
+              "value": "liftgate_unlock",
+              "label": {
+                "en": "Unlock the liftgate",
+                "fr": "Déverrouiller le hayon",
+                "de": "Heckklappe entriegeln",
+                "es": "Desbloquear el portón"
+              }
+            },
+            {
+              "value": "refresh_location",
+              "label": {
+                "en": "Refresh the location",
+                "fr": "Actualiser la position",
+                "de": "Standort aktualisieren",
+                "es": "Actualizar la ubicación"
+              }
+            },
+            {
+              "value": "deep_refresh",
+              "label": {
+                "en": "Refresh the battery level",
+                "fr": "Actualiser le niveau de batterie",
+                "de": "Akkustand aktualisieren",
+                "es": "Actualizar el nivel de batería"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scene_triggers": [
+    {
+      "key": "charging_state_changed",
+      "label": {
+        "en": "Vehicle charging started / stopped",
+        "fr": "Recharge du véhicule démarrée / arrêtée",
+        "de": "Laden des Fahrzeugs gestartet / beendet",
+        "es": "Carga del vehículo iniciada / detenida"
+      },
+      "description": {
+        "en": "An electric or plug-in hybrid vehicle starts or stops charging.",
+        "fr": "Un véhicule électrique ou hybride rechargeable commence ou arrête de charger.",
+        "de": "Ein Elektro- oder Plug-in-Hybridfahrzeug beginnt oder beendet das Laden.",
+        "es": "Un vehículo eléctrico o híbrido enchufable empieza o deja de cargar."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Vehicle",
+            "fr": "Véhicule",
+            "de": "Fahrzeug",
+            "es": "Vehículo"
+          }
+        },
+        {
+          "key": "state",
+          "type": "select",
+          "label": {
+            "en": "State",
+            "fr": "État",
+            "de": "Zustand",
+            "es": "Estado"
+          },
+          "options": [
+            {
+              "value": "started",
+              "label": {
+                "en": "Started",
+                "fr": "Démarrée",
+                "de": "Gestartet",
+                "es": "Iniciada"
+              }
+            },
+            {
+              "value": "stopped",
+              "label": {
+                "en": "Stopped",
+                "fr": "Arrêtée",
+                "de": "Beendet",
+                "es": "Detenida"
+              }
+            }
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "key": "vehicle",
+          "type": "string",
+          "label": {
+            "en": "Vehicle name",
+            "fr": "Nom du véhicule",
+            "de": "Fahrzeugname",
+            "es": "Nombre del vehículo"
+          }
+        },
+        {
+          "key": "state",
+          "type": "string",
+          "label": {
+            "en": "New state",
+            "fr": "Nouvel état",
+            "de": "Neuer Zustand",
+            "es": "Nuevo estado"
+          }
+        },
+        {
+          "key": "battery_level",
+          "type": "number",
+          "label": {
+            "en": "Battery level (%)",
+            "fr": "Niveau de batterie (%)",
+            "de": "Akkustand (%)",
+            "es": "Nivel de batería (%)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "plug_state_changed",
+      "label": {
+        "en": "Vehicle plugged in / unplugged",
+        "fr": "Véhicule branché / débranché",
+        "de": "Fahrzeug angesteckt / abgesteckt",
+        "es": "Vehículo enchufado / desenchufado"
+      },
+      "description": {
+        "en": "The charging cable is plugged into or removed from the vehicle.",
+        "fr": "Le câble de recharge est branché sur le véhicule ou retiré.",
+        "de": "Das Ladekabel wird am Fahrzeug angesteckt oder abgezogen.",
+        "es": "El cable de carga se conecta o se retira del vehículo."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Vehicle",
+            "fr": "Véhicule",
+            "de": "Fahrzeug",
+            "es": "Vehículo"
+          }
+        },
+        {
+          "key": "state",
+          "type": "select",
+          "label": {
+            "en": "State",
+            "fr": "État",
+            "de": "Zustand",
+            "es": "Estado"
+          },
+          "options": [
+            {
+              "value": "plugged",
+              "label": {
+                "en": "Plugged in",
+                "fr": "Branché",
+                "de": "Angesteckt",
+                "es": "Enchufado"
+              }
+            },
+            {
+              "value": "unplugged",
+              "label": {
+                "en": "Unplugged",
+                "fr": "Débranché",
+                "de": "Abgesteckt",
+                "es": "Desenchufado"
+              }
+            }
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "key": "vehicle",
+          "type": "string",
+          "label": {
+            "en": "Vehicle name",
+            "fr": "Nom du véhicule",
+            "de": "Fahrzeugname",
+            "es": "Nombre del vehículo"
+          }
+        },
+        {
+          "key": "state",
+          "type": "string",
+          "label": {
+            "en": "New state",
+            "fr": "Nouvel état",
+            "de": "Neuer Zustand",
+            "es": "Nuevo estado"
+          }
+        },
+        {
+          "key": "battery_level",
+          "type": "number",
+          "label": {
+            "en": "Battery level (%)",
+            "fr": "Niveau de batterie (%)",
+            "de": "Akkustand (%)",
+            "es": "Nivel de batería (%)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "lock_state_changed",
+      "label": {
+        "en": "Vehicle locked / unlocked",
+        "fr": "Véhicule verrouillé / déverrouillé",
+        "de": "Fahrzeug verriegelt / entriegelt",
+        "es": "Vehículo bloqueado / desbloqueado"
+      },
+      "description": {
+        "en": "The doors of the vehicle are locked or unlocked.",
+        "fr": "Les portes du véhicule sont verrouillées ou déverrouillées.",
+        "de": "Die Türen des Fahrzeugs werden verriegelt oder entriegelt.",
+        "es": "Las puertas del vehículo se bloquean o desbloquean."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Vehicle",
+            "fr": "Véhicule",
+            "de": "Fahrzeug",
+            "es": "Vehículo"
+          }
+        },
+        {
+          "key": "state",
+          "type": "select",
+          "label": {
+            "en": "State",
+            "fr": "État",
+            "de": "Zustand",
+            "es": "Estado"
+          },
+          "options": [
+            {
+              "value": "locked",
+              "label": {
+                "en": "Locked",
+                "fr": "Verrouillé",
+                "de": "Verriegelt",
+                "es": "Bloqueado"
+              }
+            },
+            {
+              "value": "unlocked",
+              "label": {
+                "en": "Unlocked",
+                "fr": "Déverrouillé",
+                "de": "Entriegelt",
+                "es": "Desbloqueado"
+              }
+            }
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "key": "vehicle",
+          "type": "string",
+          "label": {
+            "en": "Vehicle name",
+            "fr": "Nom du véhicule",
+            "de": "Fahrzeugname",
+            "es": "Nombre del vehículo"
+          }
+        },
+        {
+          "key": "state",
+          "type": "string",
+          "label": {
+            "en": "New state",
+            "fr": "Nouvel état",
+            "de": "Neuer Zustand",
+            "es": "Nuevo estado"
+          }
+        }
+      ]
+    },
+    {
+      "key": "ignition_state_changed",
+      "label": {
+        "en": "Vehicle ignition on / off",
+        "fr": "Contact du véhicule mis / coupé",
+        "de": "Zündung des Fahrzeugs an / aus",
+        "es": "Encendido del vehículo activado / apagado"
+      },
+      "description": {
+        "en": "The vehicle is started or switched off.",
+        "fr": "Le véhicule est démarré ou éteint.",
+        "de": "Das Fahrzeug wird gestartet oder abgestellt.",
+        "es": "El vehículo se arranca o se apaga."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Vehicle",
+            "fr": "Véhicule",
+            "de": "Fahrzeug",
+            "es": "Vehículo"
+          }
+        },
+        {
+          "key": "state",
+          "type": "select",
+          "label": {
+            "en": "State",
+            "fr": "État",
+            "de": "Zustand",
+            "es": "Estado"
+          },
+          "options": [
+            {
+              "value": "on",
+              "label": {
+                "en": "On",
+                "fr": "Mis",
+                "de": "An",
+                "es": "Activado"
+              }
+            },
+            {
+              "value": "off",
+              "label": {
+                "en": "Off",
+                "fr": "Coupé",
+                "de": "Aus",
+                "es": "Apagado"
+              }
+            }
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "key": "vehicle",
+          "type": "string",
+          "label": {
+            "en": "Vehicle name",
+            "fr": "Nom du véhicule",
+            "de": "Fahrzeugname",
+            "es": "Nombre del vehículo"
+          }
+        },
+        {
+          "key": "state",
+          "type": "string",
+          "label": {
+            "en": "New state",
+            "fr": "Nouvel état",
+            "de": "Neuer Zustand",
+            "es": "Nuevo estado"
+          }
+        }
+      ]
+    },
+    {
+      "key": "battery_low",
+      "label": {
+        "en": "Vehicle battery low",
+        "fr": "Batterie du véhicule faible",
+        "de": "Fahrzeugakku niedrig",
+        "es": "Batería del vehículo baja"
+      },
+      "description": {
+        "en": "The charge drops under the threshold set in the configuration.",
+        "fr": "La charge passe sous le seuil défini dans la configuration.",
+        "de": "Die Ladung fällt unter die in der Konfiguration festgelegte Schwelle.",
+        "es": "La carga baja del umbral definido en la configuración."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Vehicle",
+            "fr": "Véhicule",
+            "de": "Fahrzeug",
+            "es": "Vehículo"
+          }
+        }
+      ],
+      "variables": [
+        {
+          "key": "vehicle",
+          "type": "string",
+          "label": {
+            "en": "Vehicle name",
+            "fr": "Nom du véhicule",
+            "de": "Fahrzeugname",
+            "es": "Nombre del vehículo"
+          }
+        },
+        {
+          "key": "battery_level",
+          "type": "number",
+          "label": {
+            "en": "Battery level (%)",
+            "fr": "Niveau de batterie (%)",
+            "de": "Akkustand (%)",
+            "es": "Nivel de batería (%)"
+          }
+        },
+        {
+          "key": "threshold",
+          "type": "number",
+          "label": {
+            "en": "Threshold (%)",
+            "fr": "Seuil (%)",
+            "de": "Schwelle (%)",
+            "es": "Umbral (%)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "tyre_pressure_warning",
+      "label": {
+        "en": "Tyre pressure warning",
+        "fr": "Alerte de pression des pneus",
+        "de": "Reifendruckwarnung",
+        "es": "Alerta de presión de neumáticos"
+      },
+      "description": {
+        "en": "The vehicle reports a tyre pressure warning.",
+        "fr": "Le véhicule signale une alerte de pression d’un pneu.",
+        "de": "Das Fahrzeug meldet eine Reifendruckwarnung.",
+        "es": "El vehículo informa de una alerta de presión de un neumático."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Vehicle",
+            "fr": "Véhicule",
+            "de": "Fahrzeug",
+            "es": "Vehículo"
+          }
+        }
+      ],
+      "variables": [
+        {
+          "key": "vehicle",
+          "type": "string",
+          "label": {
+            "en": "Vehicle name",
+            "fr": "Nom du véhicule",
+            "de": "Fahrzeugname",
+            "es": "Nombre del vehículo"
+          }
+        },
+        {
+          "key": "wheel",
+          "type": "string",
+          "label": {
+            "en": "Wheel (front_left, front_right, rear_left, rear_right)",
+            "fr": "Roue (front_left, front_right, rear_left, rear_right)",
+            "de": "Rad (front_left, front_right, rear_left, rear_right)",
+            "es": "Rueda (front_left, front_right, rear_left, rear_right)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "location_changed",
+      "label": {
+        "en": "Vehicle moved",
+        "fr": "Véhicule déplacé",
+        "de": "Fahrzeug bewegt",
+        "es": "Vehículo desplazado"
+      },
+      "description": {
+        "en": "The last known location of the vehicle moved by more than 200 m.",
+        "fr": "La dernière position connue du véhicule a changé de plus de 200 m.",
+        "de": "Der letzte bekannte Standort des Fahrzeugs hat sich um mehr als 200 m geändert.",
+        "es": "La última ubicación conocida del vehículo ha cambiado más de 200 m."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Vehicle",
+            "fr": "Véhicule",
+            "de": "Fahrzeug",
+            "es": "Vehículo"
+          }
+        }
+      ],
+      "variables": [
+        {
+          "key": "vehicle",
+          "type": "string",
+          "label": {
+            "en": "Vehicle name",
+            "fr": "Nom du véhicule",
+            "de": "Fahrzeugname",
+            "es": "Nombre del vehículo"
+          }
+        },
+        {
+          "key": "latitude",
+          "type": "number",
+          "label": {
+            "en": "Latitude",
+            "fr": "Latitude",
+            "de": "Breitengrad",
+            "es": "Latitud"
+          }
+        },
+        {
+          "key": "longitude",
+          "type": "number",
+          "label": {
+            "en": "Longitude",
+            "fr": "Longitude",
+            "de": "Längengrad",
+            "es": "Longitud"
+          }
+        },
+        {
+          "key": "distance",
+          "type": "number",
+          "label": {
+            "en": "Distance moved (m)",
+            "fr": "Distance parcourue (m)",
+            "de": "Zurückgelegte Strecke (m)",
+            "es": "Distancia recorrida (m)"
+          }
+        }
+      ]
+    }
+  ],
+  "scene_actions": [
+    {
+      "key": "send_command",
+      "label": {
+        "en": "Send a command to a vehicle",
+        "fr": "Envoyer une commande à un véhicule",
+        "de": "Befehl an ein Fahrzeug senden",
+        "es": "Enviar un comando a un vehículo"
+      },
+      "description": {
+        "en": "Lock, unlock, climate, charge, lights… via Uconnect.",
+        "fr": "Verrouiller, déverrouiller, climatisation, recharge, phares… via Uconnect.",
+        "de": "Verriegeln, entriegeln, Klima, Laden, Licht … via Uconnect.",
+        "es": "Bloquear, desbloquear, clima, carga, luces… vía Uconnect."
+      },
+      "timeout_seconds": 120,
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Vehicle",
+            "fr": "Véhicule",
+            "de": "Fahrzeug",
+            "es": "Vehículo"
+          },
+          "required": true
+        },
+        {
+          "key": "command",
+          "type": "select",
+          "label": {
+            "en": "Command",
+            "fr": "Commande",
+            "de": "Befehl",
+            "es": "Comando"
+          },
+          "required": true,
+          "options": [
+            {
+              "value": "lock",
+              "label": {
+                "en": "Lock the doors",
+                "fr": "Verrouiller les portes",
+                "de": "Türen verriegeln",
+                "es": "Bloquear las puertas"
+              }
+            },
+            {
+              "value": "unlock",
+              "label": {
+                "en": "Unlock the doors",
+                "fr": "Déverrouiller les portes",
+                "de": "Türen entriegeln",
+                "es": "Desbloquear las puertas"
+              }
+            },
+            {
+              "value": "climate_on",
+              "label": {
+                "en": "Start the climate",
+                "fr": "Démarrer la climatisation",
+                "de": "Klimatisierung starten",
+                "es": "Encender la climatización"
+              }
+            },
+            {
+              "value": "climate_off",
+              "label": {
+                "en": "Stop the climate",
+                "fr": "Arrêter la climatisation",
+                "de": "Klimatisierung stoppen",
+                "es": "Apagar la climatización"
+              }
+            },
+            {
+              "value": "engine_on",
+              "label": {
+                "en": "Remote engine start",
+                "fr": "Démarrer le moteur à distance",
+                "de": "Motor fernstarten",
+                "es": "Arrancar el motor a distancia"
+              }
+            },
+            {
+              "value": "engine_off",
+              "label": {
+                "en": "Remote engine stop",
+                "fr": "Arrêter le moteur à distance",
+                "de": "Motor fern abstellen",
+                "es": "Parar el motor a distancia"
+              }
+            },
+            {
+              "value": "lights_horn",
+              "label": {
+                "en": "Flash lights and honk",
+                "fr": "Phares et klaxon",
+                "de": "Lichthupe und Hupe",
+                "es": "Luces y claxon"
+              }
+            },
+            {
+              "value": "lights",
+              "label": {
+                "en": "Flash the lights",
+                "fr": "Faire clignoter les phares",
+                "de": "Lichter blinken lassen",
+                "es": "Encender las luces"
+              }
+            },
+            {
+              "value": "charge_now",
+              "label": {
+                "en": "Start charging",
+                "fr": "Lancer la recharge",
+                "de": "Laden starten",
+                "es": "Iniciar la carga"
+              }
+            },
+            {
+              "value": "cabin_ventilation",
+              "label": {
+                "en": "Ventilate the cabin",
+                "fr": "Ventiler l’habitacle",
+                "de": "Innenraum lüften",
+                "es": "Ventilar el habitáculo"
+              }
+            },
+            {
+              "value": "trunk_lock",
+              "label": {
+                "en": "Lock the trunk",
+                "fr": "Verrouiller le coffre",
+                "de": "Kofferraum verriegeln",
+                "es": "Bloquear el maletero"
+              }
+            },
+            {
+              "value": "trunk_unlock",
+              "label": {
+                "en": "Unlock the trunk",
+                "fr": "Déverrouiller le coffre",
+                "de": "Kofferraum entriegeln",
+                "es": "Desbloquear el maletero"
+              }
+            },
+            {
+              "value": "liftgate_lock",
+              "label": {
+                "en": "Lock the liftgate",
+                "fr": "Verrouiller le hayon",
+                "de": "Heckklappe verriegeln",
+                "es": "Bloquear el portón"
+              }
+            },
+            {
+              "value": "liftgate_unlock",
+              "label": {
+                "en": "Unlock the liftgate",
+                "fr": "Déverrouiller le hayon",
+                "de": "Heckklappe entriegeln",
+                "es": "Desbloquear el portón"
+              }
+            },
+            {
+              "value": "refresh_location",
+              "label": {
+                "en": "Refresh the location",
+                "fr": "Actualiser la position",
+                "de": "Standort aktualisieren",
+                "es": "Actualizar la ubicación"
+              }
+            },
+            {
+              "value": "deep_refresh",
+              "label": {
+                "en": "Refresh the battery level",
+                "fr": "Actualiser le niveau de batterie",
+                "de": "Akkustand aktualisieren",
+                "es": "Actualizar el nivel de batería"
+              }
+            }
+          ]
+        },
+        {
+          "key": "temperature",
+          "type": "number",
+          "label": {
+            "en": "Climate temperature (optional)",
+            "fr": "Température de climatisation (facultatif)",
+            "de": "Klimatemperatur (optional)",
+            "es": "Temperatura de climatización (opcional)"
+          },
+          "description": {
+            "en": "Only used by \"Start the climate\".",
+            "fr": "Utilisée uniquement par « Démarrer la climatisation ».",
+            "de": "Nur für „Klimatisierung starten“.",
+            "es": "Solo se usa con «Encender la climatización»."
+          },
+          "required": false,
+          "min": 10,
+          "max": 90
+        }
+      ],
+      "outputs": [
+        {
+          "key": "success",
+          "type": "boolean",
+          "label": {
+            "en": "Confirmed by the vehicle",
+            "fr": "Confirmé par le véhicule",
+            "de": "Vom Fahrzeug bestätigt",
+            "es": "Confirmado por el vehículo"
+          }
+        },
+        {
+          "key": "status",
+          "type": "string",
+          "label": {
+            "en": "Status (success, sent, failed, unsupported)",
+            "fr": "Statut (success, sent, failed, unsupported)",
+            "de": "Status (success, sent, failed, unsupported)",
+            "es": "Estado (success, sent, failed, unsupported)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "refresh_vehicle",
+      "label": {
+        "en": "Refresh a vehicle",
+        "fr": "Rafraîchir un véhicule",
+        "de": "Fahrzeug aktualisieren",
+        "es": "Actualizar un vehículo"
+      },
+      "description": {
+        "en": "Read the latest state of a vehicle, for the next actions.",
+        "fr": "Lit le dernier état d’un véhicule, pour les actions suivantes.",
+        "de": "Liest den neuesten Zustand eines Fahrzeugs für die nächsten Aktionen.",
+        "es": "Lee el último estado de un vehículo para las acciones siguientes."
+      },
+      "timeout_seconds": 60,
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Vehicle",
+            "fr": "Véhicule",
+            "de": "Fahrzeug",
+            "es": "Vehículo"
+          },
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "key": "battery_level",
+          "type": "number",
+          "label": {
+            "en": "Battery level (%)",
+            "fr": "Niveau de batterie (%)",
+            "de": "Akkustand (%)",
+            "es": "Nivel de batería (%)"
+          }
+        },
+        {
+          "key": "range",
+          "type": "number",
+          "label": {
+            "en": "Range",
+            "fr": "Autonomie",
+            "de": "Reichweite",
+            "es": "Autonomía"
+          }
+        },
+        {
+          "key": "odometer",
+          "type": "number",
+          "label": {
+            "en": "Odometer",
+            "fr": "Kilométrage",
+            "de": "Kilometerstand",
+            "es": "Kilometraje"
+          }
+        },
+        {
+          "key": "fuel_level",
+          "type": "number",
+          "label": {
+            "en": "Fuel level (%)",
+            "fr": "Niveau de carburant (%)",
+            "de": "Kraftstoffstand (%)",
+            "es": "Nivel de combustible (%)"
+          }
+        },
+        {
+          "key": "locked",
+          "type": "boolean",
+          "label": {
+            "en": "Doors locked",
+            "fr": "Portes verrouillées",
+            "de": "Türen verriegelt",
+            "es": "Puertas bloqueadas"
+          }
+        },
+        {
+          "key": "charging",
+          "type": "boolean",
+          "label": {
+            "en": "Charging",
+            "fr": "En charge",
+            "de": "Lädt",
+            "es": "Cargando"
+          }
+        },
+        {
+          "key": "plugged",
+          "type": "boolean",
+          "label": {
+            "en": "Plugged in",
+            "fr": "Branché",
+            "de": "Angesteckt",
+            "es": "Enchufado"
+          }
+        },
+        {
+          "key": "latitude",
+          "type": "number",
+          "label": {
+            "en": "Latitude",
+            "fr": "Latitude",
+            "de": "Breitengrad",
+            "es": "Latitud"
+          }
+        },
+        {
+          "key": "longitude",
+          "type": "number",
+          "label": {
+            "en": "Longitude",
+            "fr": "Longitude",
+            "de": "Längengrad",
+            "es": "Longitud"
+          }
+        }
+      ]
+    },
+    {
+      "key": "send_destination",
+      "label": {
+        "en": "Send a destination to the GPS",
+        "fr": "Envoyer une destination au GPS",
+        "de": "Ziel an das Navi senden",
+        "es": "Enviar un destino al GPS"
+      },
+      "description": {
+        "en": "Send a destination to the vehicle navigation system.",
+        "fr": "Envoie une destination au système de navigation du véhicule.",
+        "de": "Sendet ein Ziel an das Navigationssystem des Fahrzeugs.",
+        "es": "Envía un destino al sistema de navegación del vehículo."
+      },
+      "timeout_seconds": 60,
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Vehicle",
+            "fr": "Véhicule",
+            "de": "Fahrzeug",
+            "es": "Vehículo"
+          },
+          "required": true
+        },
+        {
+          "key": "latitude",
+          "type": "number",
+          "label": {
+            "en": "Latitude",
+            "fr": "Latitude",
+            "de": "Breitengrad",
+            "es": "Latitud"
+          },
+          "required": true,
+          "min": -90,
+          "max": 90
+        },
+        {
+          "key": "longitude",
+          "type": "number",
+          "label": {
+            "en": "Longitude",
+            "fr": "Longitude",
+            "de": "Längengrad",
+            "es": "Longitud"
+          },
+          "required": true,
+          "min": -180,
+          "max": 180
+        },
+        {
+          "key": "name",
+          "type": "string",
+          "label": {
+            "en": "Name (optional)",
+            "fr": "Nom (facultatif)",
+            "de": "Name (optional)",
+            "es": "Nombre (opcional)"
+          },
+          "placeholder": {
+            "en": "e.g. Office",
+            "fr": "ex. Bureau",
+            "de": "z. B. Büro",
+            "es": "p. ej. Oficina"
+          },
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "key": "success",
+          "type": "boolean",
+          "label": {
+            "en": "Accepted",
+            "fr": "Acceptée",
+            "de": "Angenommen",
+            "es": "Aceptado"
+          }
+        }
+      ]
+    }
+  ],
+  "widgets": [
+    {
+      "key": "vehicle_status",
+      "label": {
+        "en": "Vehicle",
+        "fr": "Véhicule",
+        "de": "Fahrzeug",
+        "es": "Vehículo"
+      },
+      "description": {
+        "en": "Battery or fuel, range, doors, charge, climate, location and quick commands.",
+        "fr": "Batterie ou carburant, autonomie, portes, recharge, clim, position et commandes.",
+        "de": "Akku oder Tank, Reichweite, Türen, Laden, Klima, Standort und Schnellbefehle.",
+        "es": "Batería o combustible, autonomía, puertas, carga, clima, ubicación y comandos."
+      },
+      "icon": "truck",
+      "action_timeout_seconds": 120,
+      "settings": [
+        {
+          "key": "vehicle",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Vehicle",
+            "fr": "Véhicule",
+            "de": "Fahrzeug",
+            "es": "Vehículo"
+          },
+          "description": {
+            "en": "Empty: the first vehicle of the account.",
+            "fr": "Vide : le premier véhicule du compte.",
+            "de": "Leer: das erste Fahrzeug des Kontos.",
+            "es": "Vacío: el primer vehículo de la cuenta."
+          },
+          "required": false
+        }
+      ]
+    },
+    {
+      "key": "fleet_overview",
+      "label": {
+        "en": "My vehicles",
+        "fr": "Mes véhicules",
+        "de": "Meine Fahrzeuge",
+        "es": "Mis vehículos"
+      },
+      "description": {
+        "en": "Every vehicle of the Uconnect account at a glance.",
+        "fr": "Tous les véhicules du compte Uconnect en un coup d’œil.",
+        "de": "Alle Fahrzeuge des Uconnect-Kontos auf einen Blick.",
+        "es": "Todos los vehículos de la cuenta Uconnect de un vistazo."
+      },
+      "icon": "grid"
+    }
+  ]
+}

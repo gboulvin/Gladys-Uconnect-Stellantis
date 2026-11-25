@@ -1,0 +1,19 @@
+{
+  "timestamp": 1738660203634,
+  "vehicleInfo": {
+    "batteryInfo": { "batteryVoltage": { "unit": "volts", "value": "12.4" } },
+    "daysToService": "-3",
+    "fuel": {
+      "distanceToEmpty": { "unit": "mi", "value": "312" },
+      "fuelAmountLevel": "58",
+      "isFuelLevelLow": "false"
+    },
+    "odometer": { "odometer": { "unit": "mi", "value": "28754" } },
+    "tyrePressure": [
+      { "type": "FL", "pressure": { "unit": "psi", "value": "36" }, "warning": false },
+      { "type": "FR", "pressure": { "unit": "psi", "value": "35.5" }, "warning": false },
+      { "type": "RL", "pressure": { "unit": "psi", "value": "36" }, "warning": false },
+      { "type": "RR", "pressure": { "unit": "psi", "value": "36" }, "warning": false }
+    ]
+  }
+}

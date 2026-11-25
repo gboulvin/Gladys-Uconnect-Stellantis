@@ -1,0 +1,35 @@
+{
+  "timestamp": 1738660203634,
+  "vehicleInfo": {
+    "batteryInfo": {
+      "batteryStateOfCharge": "NORMAL",
+      "batteryVoltage": { "unit": "volts", "value": "14.875" }
+    },
+    "daysToService": "325",
+    "distanceToService": { "distanceToService": { "unit": "km", "value": "13159.0" } },
+    "fuel": { "distanceToEmpty": { "unit": "km", "value": null }, "fuelAmountLevel": null },
+    "odometer": { "odometer": { "unit": "km", "value": "1841" } },
+    "oilLevel": { "oilLevel": null },
+    "tyrePressure": [
+      { "type": "FL", "pressure": { "unit": "kPa", "value": "250" }, "warning": false },
+      { "type": "FR", "pressure": { "unit": "kPa", "value": "252" }, "warning": false },
+      { "type": "RL", "pressure": { "unit": "kPa", "value": "240" }, "warning": false },
+      { "type": "RR", "pressure": { "unit": "kPa", "value": null }, "warning": false }
+    ]
+  },
+  "evInfo": {
+    "battery": {
+      "chargingLevel": "LEVEL_2",
+      "chargingStatus": "CHARGING",
+      "distanceToEmpty": { "unit": "km", "value": "134" },
+      "plugInStatus": true,
+      "stateOfCharge": 63,
+      "timeToFullyChargeL1": -1,
+      "timeToFullyChargeL2": 96,
+      "timeToFullyChargeL3": 41,
+      "totalRange": 134
+    },
+    "ignitionStatus": "OFF",
+    "timestamp": 1738660203634
+  }
+}

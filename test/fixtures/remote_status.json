@@ -1,0 +1,19 @@
+{
+  "timestamp": 1738660300000,
+  "doors": {
+    "driver": { "status": "LOCKED" },
+    "passenger": { "status": "LOCKED" },
+    "leftRear": { "status": "LOCKED" },
+    "rightRear": { "status": "NA" }
+  },
+  "windows": {
+    "driver": { "status": "CLOSED" },
+    "passenger": { "status": "CLOSED" },
+    "leftRear": { "status": "CLOSED" },
+    "rightRear": { "status": "CLOSED" },
+    "sunroof": { "status": "NA" }
+  },
+  "trunk": { "status": "LOCKED" },
+  "engine": { "status": "OFF" },
+  "hvac": { "status": "OFF", "temperature": { "unit": "C", "value": 21.5 } }
+}
